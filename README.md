@@ -1,27 +1,122 @@
-# RoomsAdminV4
+# RoomsAdmin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+Implementado com:
+- Angular
+- ExpressJS
+- MongoDB
+- JWT
+- Heroku
 
-## Development server
+## Visão geral do sistema
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+O aplicativo desenvolvido compreende um sistema de gerenciamento
+do espaços &#x2014; denominado *RoomsAdmin* &#x2014;,
+projetado como uma aplicação web.
 
-## Code scaffolding
+O sistema possui três tipo de usuários:
+*autenticado*, *responsável* e *administrador*.
+As funcionalidades do sistema estão organizadas de acordo com
+esses três tipos de usuários.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Usuários do tipo *autenticado* são os usuários comuns do sistema.
+Podem:
 
-## Build
+-   reservar espaços;
+-   realizar buscas por espaços;
+-   visualizar e cancelar suas próprias reservas.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Usuários do tipo *responsável* são os usuários responsáveis
+por um setor. No *RoomsAdmin* os espaços são organizados em setores e
+cada setor tem um usuário responsável, além disso, toda reserva deve
+ser aprovada por um usuário do tipo *responsável* antes de ser efetivada
+(cada responsável por setor pode aprovar ou rejeitar
+reservas feitas nos espaços pertencentes aos setores sobre os quais
+é responsável).
 
-## Running unit tests
+Usuários do tipo administrador são responsáveis
+pelo gerenciamento da aplicação. Podem:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-   adicionar e remover usuário;
+-   adicionar, remover e atualizar espaços;
+-   adicionar, remover e atualizar setores;
+-   remover reservas;
+-   definir responsável por setor.
 
-## Running end-to-end tests
+## Arquitetura da aplicação
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+A aplicação é dividida em três componentes &#x2014; *cliente principal*,
+*cliente administrador* e *servidor*.
+Os componentes *cliente principal* e *cliente administrador* são
+responsáveis pela interface gráfica da aplicação. O componente
+*servidor* é responsável pelo logica da aplicação.
 
-## Further help
+Os componentes *cliente principal* e *cliente administrador* são
+implementados como aplicações *Angular* e executam no navegador
+web do usuário.
+O componente *servidor* é implementado como uma aplicação *Express.js*
+(um servidor de API REST);
+*MongoDB* é utilizado como banco de dados.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![img](https://github.com/davideas000/images/blob/master/architecture2.svg)
+
+## Interfaces de usuário e Funcionamento da aplicação
+
+### Interface de login
+
+![img](https://github.com/davideas000/images/blob/master/login_page.png "Interface de login")
+
+### Interface de listagem de espaços
+
+![img](https://github.com/davideas000/images/blob/master/rooms_page.png "Interface de listagem de espaços")
+
+
+### Interface de registro de nova reserva
+
+![img](https://github.com/davideas000/images/blob/master/new_reservation_page.png "Interface de criação de uma nova reserva")
+
+### Interface de detalhes de espaço
+
+![img](https://github.com/davideas000/images/blob/master/room_details_page.png "Interface de detalhes de um espaço")
+
+
+### Interface de listagem de reservas aprovadas de usuário
+
+![img](https://github.com/davideas000/images/blob/master/my_approved_reservations_page.png "Interface de listagem reservas aprovadas de usuário")
+
+
+### Interface de listagem de reservas pendentes de usuário
+
+![img](https://github.com/davideas000/images/blob/master/my_pending_reservations_page.png "Interface de listagem de reservas pendentes de usuário")
+
+
+### Interface de listagem de reservas aprovadas de setor
+
+![img](https://github.com/davideas000/images/blob/master/department_approved_reservations_page.png "Interface de listagem de reservas aprovadas de setor")
+
+### Interface de listagem de reservas pendentes de setor
+
+![img](https://github.com/davideas000/images/blob/master/department_pending_reservations_page.png "Interface de listagem de reservas pendentes de setor")
+
+### Interface de listagem de usuários
+
+![img](https://github.com/davideas000/images/blob/master/admin_users_page.png "Interface de listagem de usuários")
+
+### Interface de listagem de espaços (administrador)
+
+![img](https://github.com/davideas000/images/blob/master/admin_rooms_page.png "Interface de listagem de espaços (administrador)")
+
+### Interface de cadastro de espaço
+
+![img](https://github.com/davideas000/images/blob/master/admin_add_room_page2.png "Interface de cadastro de espaço")
+
+### Interface de listagem de setores
+
+![img](https://github.com/davideas000/images/blob/master/admin_departments_page.png "Interface de listagem de setores")
+
+### Interface de cadastro de setor
+
+![img](https://github.com/davideas000/images/blob/master/admin_new_department_page.png "Interface de adição de novo setor")
+
+### Interface de listagem de reservas (administrador)
+
+![img](https://github.com/davideas000/images/blob/master/admin_reservations_page.png "Interface de listagem de reservas (administrador)")
